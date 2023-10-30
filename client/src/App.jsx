@@ -1,9 +1,9 @@
-import Sidebar from "./components/partials/Sidebar";
+import Homepage from "./components/home/Homepage";
 
 function App() {
   return (
     <>
-      <Sidebar />
+      <Homepage />
     </>
   );
 }

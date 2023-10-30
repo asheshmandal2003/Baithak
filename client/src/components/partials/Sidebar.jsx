@@ -1,33 +1,24 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import MovieCreationOutlinedIcon from "@mui/icons-material/MovieCreationOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import UserImg from "./UserImg";
 
-const drawerWidth = 240;
+const drawerWidth = 245;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -50,33 +41,6 @@ const closedMixin = (theme) => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -95,12 +59,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Sidebar() {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const handleDrawer = () => {
     setOpen(!open);
@@ -115,10 +74,10 @@ export default function Sidebar() {
           <ListItem disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
-                fontSize: 30,
+                fontSize: 28,
                 minHeight: 80,
                 justifyContent: open ? "initial" : "center",
-                px: 2.5,
+                px: 3,
               }}
             >
               Baithak
@@ -143,7 +102,12 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <HomeOutlinedIcon sx={{ fontSize: 32 }} />
+                <HomeOutlinedIcon
+                  sx={{
+                    fontSize: 32,
+                    color: "#000",
+                  }}
+                />
               </ListItemIcon>
               <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -167,13 +131,12 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <SearchOutlinedIcon sx={{ fontSize: 32 }} />
+                <SearchOutlinedIcon sx={{ fontSize: 32, color: "#000" }} />
               </ListItemIcon>
               <ListItemText primary="Search" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem
-            key="text"
             disablePadding
             sx={{ display: "block" }}
             onClick={handleDrawer}
@@ -192,13 +155,12 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <ExploreOutlinedIcon sx={{ fontSize: 32 }} />
+                <ExploreOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
               </ListItemIcon>
               <ListItemText primary="Explore" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem
-            key="text"
             disablePadding
             sx={{ display: "block" }}
             onClick={handleDrawer}
@@ -217,13 +179,14 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <MovieCreationOutlinedIcon sx={{ fontSize: 32 }} />
+                <MovieCreationOutlinedIcon
+                  sx={{ fontSize: 28, color: "#000" }}
+                />
               </ListItemIcon>
               <ListItemText primary="Reels" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem
-            key="text"
             disablePadding
             sx={{ display: "block" }}
             onClick={handleDrawer}
@@ -242,7 +205,9 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <FavoriteBorderOutlinedIcon sx={{ fontSize: 32 }} />
+                <FavoriteBorderOutlinedIcon
+                  sx={{ fontSize: 28, color: "#000" }}
+                />
               </ListItemIcon>
               <ListItemText
                 primary="Notifications"
@@ -251,7 +216,6 @@ export default function Sidebar() {
             </ListItemButton>
           </ListItem>
           <ListItem
-            key="text"
             disablePadding
             sx={{ display: "block" }}
             onClick={handleDrawer}
@@ -270,13 +234,12 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <AddBoxOutlinedIcon sx={{ fontSize: 32 }} />
+                <AddBoxOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
               </ListItemIcon>
               <ListItemText primary="Create" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem
-            key="text"
             disablePadding
             sx={{ display: "block" }}
             onClick={handleDrawer}
@@ -295,7 +258,7 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <AccountCircleOutlinedIcon sx={{ fontSize: 32 }} />
+                <UserImg height={30} width={30} />
               </ListItemIcon>
               <ListItemText primary="Profile" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
@@ -319,7 +282,7 @@ export default function Sidebar() {
                   justifyContent: "center",
                 }}
               >
-                <MenuOutlinedIcon sx={{ fontSize: 32 }} />
+                <MenuOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
               </ListItemIcon>
               <ListItemText primary="More" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
