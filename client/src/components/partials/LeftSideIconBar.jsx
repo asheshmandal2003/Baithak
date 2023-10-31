@@ -1,10 +1,11 @@
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import {
+  Box,
+  CssBaseline,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+} from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -13,20 +14,15 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import UserImg from "./UserImg";
-import { useState } from "react";
-import SearchDrawer from "./SearchDrawer";
 
-export default function Sidebar() {
-  const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
-  const handleDrawer = () => {
-    setOpenSearchDrawer(!openSearchDrawer);
+function LeftSideIconBar({ open, setOpen }) {
+  const handleSerachDrawer = () => {
+    setOpen(!open);
   };
   return (
     <Box sx={{ display: "flex", position: "sticky", top: 0 }}>
       <CssBaseline />
-      <List
-        sx={{ width: 250, height: "100vh", borderRight: "1px solid lightgray" }}
-      >
+      <List sx={{ height: "100vh", borderRight: "1px solid lightgray" }}>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
             sx={{
@@ -36,7 +32,12 @@ export default function Sidebar() {
               px: 3,
             }}
           >
-            Baithak
+            <Box
+              component="img"
+              src="/images/instagram.svg"
+              height={30}
+              width={30}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -61,12 +62,11 @@ export default function Sidebar() {
                 }}
               />
             </ListItemIcon>
-            <ListItemText primary="Home" sx={{ opacity: 1 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
-            onClick={handleDrawer}
+            onClick={handleSerachDrawer}
             sx={{
               minHeight: 60,
               justifyContent: "initial",
@@ -82,7 +82,6 @@ export default function Sidebar() {
             >
               <SearchOutlinedIcon sx={{ fontSize: 32, color: "#000" }} />
             </ListItemIcon>
-            <ListItemText primary="Search" sx={{ opacity: 1 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -96,13 +95,12 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
               <ExploreOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
             </ListItemIcon>
-            <ListItemText primary="Explore" sx={{ opacity: 1 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -122,7 +120,6 @@ export default function Sidebar() {
             >
               <MovieCreationOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
             </ListItemIcon>
-            <ListItemText primary="Reels" sx={{ opacity: 1 }} />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -136,7 +133,7 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
@@ -144,7 +141,6 @@ export default function Sidebar() {
                 sx={{ fontSize: 28, color: "#000" }}
               />
             </ListItemIcon>
-            <ListItemText primary="Notifications" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -158,13 +154,12 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
               <AddBoxOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
             </ListItemIcon>
-            <ListItemText primary="Create" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -184,7 +179,6 @@ export default function Sidebar() {
             >
               <UserImg height={30} width={30} />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
@@ -204,11 +198,11 @@ export default function Sidebar() {
             >
               <MenuOutlinedIcon sx={{ fontSize: 28, color: "#000" }} />
             </ListItemIcon>
-            <ListItemText primary="More" />
           </ListItemButton>
         </ListItem>
       </List>
-      <SearchDrawer open={openSearchDrawer} setOpen={setOpenSearchDrawer} />
     </Box>
   );
 }
+
+export default LeftSideIconBar;
