@@ -15,15 +15,28 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import UserImg from "./UserImg";
 import { useState } from "react";
 import SearchDrawer from "./SearchDrawer";
+import NotificationsDrawer from "./NotificationsDrawer";
+import More from "./More";
 
 export default function Sidebar() {
   const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
+  const [openNotifactions, setOpenNotifications] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(true);
+  const handleMore = () => (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen(!open);
+  };
   const handleDrawer = () => {
     setOpenSearchDrawer(!openSearchDrawer);
+  };
+  const handleNotificationsDrawer = () => {
+    setOpenNotifications(!openNotifactions);
   };
   return (
     <Box sx={{ display: "flex", position: "sticky", top: 0 }}>
       <CssBaseline />
+
       <List
         sx={{ width: 250, height: "100vh", borderRight: "1px solid lightgray" }}
       >
@@ -96,7 +109,7 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
@@ -127,6 +140,7 @@ export default function Sidebar() {
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
+            onClick={handleNotificationsDrawer}
             sx={{
               minHeight: 60,
               justifyContent: "initial",
@@ -136,7 +150,7 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
@@ -158,7 +172,7 @@ export default function Sidebar() {
             <ListItemIcon
               sx={{
                 minWidth: 0,
-                mr: open ? 2 : "auto",
+                mr: 2,
                 justifyContent: "center",
               }}
             >
@@ -189,6 +203,7 @@ export default function Sidebar() {
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
+            onClick={handleMore}
             sx={{
               minHeight: 60,
               justifyContent: "initial",
@@ -209,6 +224,11 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <SearchDrawer open={openSearchDrawer} setOpen={setOpenSearchDrawer} />
+      <NotificationsDrawer
+        open={openNotifactions}
+        setOpen={setOpenNotifications}
+      />
+      <More anchorEl={anchorEl} open={open} />
     </Box>
   );
 }

@@ -16,7 +16,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import UserImg from "./UserImg";
 
 function LeftSideIconBar({ open, setOpen }) {
-  const handleSerachDrawer = () => {
+  const handleDrawer = () => {
     setOpen(!open);
   };
   return (
@@ -66,7 +66,7 @@ function LeftSideIconBar({ open, setOpen }) {
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
-            onClick={handleSerachDrawer}
+            onClick={handleDrawer}
             sx={{
               minHeight: 60,
               justifyContent: "initial",
@@ -124,6 +124,7 @@ function LeftSideIconBar({ open, setOpen }) {
         </ListItem>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton
+            onClick={handleDrawer}
             sx={{
               minHeight: 60,
               justifyContent: "initial",
